@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Addo Booth</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Arial,"Noto Sans Thai",sans-serif;
+background:#f4f9ff;
+color:#172033;
+}
+header{
+background:linear-gradient(135deg,#0788ff,#005bea);
+color:white;
+padding:15px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:sticky;
+top:0;
+z-index:10;
+box-shadow:0 3px 15px #006eff30;
+}
+.logo{font-size:24px;font-weight:bold}
+nav{display:flex;gap:8px;align-items:center}
+button{
+border:0;
+border-radius:10px;
+padding:11px 17px;
+cursor:pointer;
+font-weight:bold;
+}
+.navbtn{background:#ffffff20;color:white}
+.navbtn:hover{background:#ffffff35}
+.container{max-width:1150px;margin:auto;padding:25px 18px}
+.hero{
+background:linear-gradient(135deg,#0788ff,#00b7ff);
+color:white;
+border-radius:22px;
+padding:45px 30px;
+box-shadow:0 10px 35px #008cff35;
+margin-bottom:25px;
+}
+.hero h1{font-size:40px;margin-bottom:10px}
+.hero p{font-size:17px;opacity:.95}
+.hero button{
+margin-top:22px;
+background:white;
+color:#0679e8;
+}
+.section-title{
+font-size:25px;
+margin:25px 0 15px;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+}
+.card{
+background:white;
+border-radius:18px;
+padding:18px;
+box-shadow:0 5px 20px #1b73a812;
+border:1px solid #e4effb;
+}
+.product-img{
+height:135px;
+border-radius:14px;
+background:linear-gradient(135deg,#dff3ff,#8bd3ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:45px;
+margin-bottom:14px;
+}
+.price{color:#0788ff;font-size:20px;font-weight:bold;margin:8px 0}
+.buy{
+background:#0788ff;
+color:white;
+width:100%;
+}
+.buy:hover{background:#006fe0}
+.panel{
+background:white;
+padding:22px;
+border-radius:18px;
+box-shadow:0 5px 20px #1b73a812;
+}
+.modal{
+position:fixed;
+inset:0;
+background:#0008;
+display:none;
+align-items:center;
+justify-content:center;
+z-index:50;
+padding:20px;
+}
+.modal-box{
+background:white;
+width:100%;
+max-width:420px;
+border-radius:20px;
+padding:25px;
+}
+.modal-box h2{margin-bottom:18px}
+input,select{
+width:100%;
+padding:13px;
+margin:7px 0 12px;
+border:1px solid #d6e5f5;
+border-radius:10px;
+outline:none;
+}
+input:focus,select:focus{border-color:#0788ff}
+.primary{
+background:#0788ff;
+color:white;
+width:100%;
+}
+.secondary{
+background:#eaf5ff;
+color:#0878dc;
+width:100%;
+margin-top:8px;
+}
+.close{
+float:right;
+background:#eee;
+padding:6px 10px;
+}
+.balance{
+font-size:30px;
+font-weight:bold;
+color:#0788ff;
+}
+.hidden{display:none!important}
+footer{
+margin-top:40px;
+padding:25px;
+text-align:center;
+background:#092b4c;
+color:#bcd7ef;
+}
+.admin{
+border:2px solid #0788ff;
+}
+.badge{
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+background:#e5f4ff;
+color:#0788ff;
+font-size:12px;
+}
+@media(max-width:650px){
+.hero h1{font-size:30px}
+header{padding:13px}
+nav button{padding:8px}
+.logo{font-size:20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">💠 Addo Booth</div>
+<nav>
+<button class="navbtn" onclick="showPage('home')">หน้าหลัก</button>
+<button class="navbtn" onclick="showPage('products')">สินค้า</button>
+<button class="navbtn" onclick="openLogin()">เข้าสู่ระบบ</button>
+</nav>
+</header>
+
+<main class="container">
+
+<section id="home">
+<div class="hero">
+<h1>Addo Booth</h1>
+<p>ร้านเติมเกมและบริการดิจิทัล โทนฟ้า ใช้งานง่าย รวดเร็ว</p>
+<button onclick="showPage('products')">ดูสินค้า 🎮</button>
+</div>
+
+<h2 class="section-title">บริการของเรา</h2>
+
+<div class="grid">
+<div class="card">
+<div style="font-size:40px">⚡</div>
+<h3>เติมเกม</h3>
+<p>เลือกเกมและสินค้าที่ต้องการได้ง่าย</p>
+</div>
+
+<div class="card">
+<div style="font-size:40px">💰</div>
+<h3>กระเป๋าเงิน</h3>
+<p>จัดการยอดเงินและประวัติการใช้งาน</p>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🔐</div>
+<h3>บัญชีสมาชิก</h3>
+<p>สมัครสมาชิกและเข้าสู่ระบบ</p>
+</div>
+</div>
+</section>
+
+<section id="products" class="hidden">
+<h2 class="section-title">🎮 สินค้า</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="product-img">🔥</div>
+<h3>Free Fire</h3>
+<p>เติมเพชร Free Fire</p>
+<div class="price">เริ่มต้น ฿10</div>
+<button class="buy" onclick="buyProduct('Free Fire',10)">ซื้อสินค้า</button>
+</div>
+
+<div class="card">
+<div class="product-img">⚔️</div>
+<h3>Delta Force</h3>
+<p>บริการเติมเกม Delta Force</p>
+<div class="price">เริ่มต้น ฿20</div>
+<button class="buy" onclick="buyProduct('Delta Force',20)">ซื้อสินค้า</button>
+</div>
+
+<div class="card">
+<div class="product-img">🎮</div>
+<h3>Roblox</h3>
+<p>เติมเครดิต Roblox</p>
+<div class="price">เริ่มต้น ฿20</div>
+<button class="buy" onclick="buyProduct('Roblox',20)">ซื้อสินค้า</button>
+</div>
+
+<div class="card">
+<div class="product-img">💎</div>
+<h3>เติมเกมอื่น ๆ</h3>
+<p>ติดต่อแอดมินเพื่อสั่งซื้อ</p>
+<div class="price">กำหนดราคาเอง</div>
+<button class="buy" onclick="openLogin()">เข้าสู่ระบบ</button>
+</div>
+
+</div>
+</section>
+
+<section id="account" class="hidden">
+
+<h2 class="section-title">👤 บัญชีของฉัน</h2>
+
+<div class="grid">
+
+<div class="panel">
+<span class="badge">บัญชีสมาชิก</span>
+<h2 id="usernameText" style="margin:12px 0">Guest</h2>
+<p>ยอดเงินคงเหลือ</p>
+<div class="balance" id="balanceText">฿0.00</div>
+<br>
+<button class="primary" onclick="openTopup()">💳 เติมเงิน</button>
+</div>
+
+<div class="panel">
+<h3>เมนูบัญชี</h3>
+<br>
+<button class="secondary" onclick="showHistory()">📋 ประวัติรายการ</button>
+<button class="secondary" onclick="logout()">ออกจากระบบ</button>
+</div>
+
+</div>
+
+<div id="history" class="panel hidden" style="margin-top:20px">
+<h3>📋 ประวัติรายการ</h3>
+<p id="historyText">ยังไม่มีรายการ</p>
+</div>
+
+</section>
+
+<section id="admin" class="hidden">
+
+<h2 class="section-title">👑 Admin Panel</h2>
+
+<div class="panel admin">
+<span class="badge">ADMIN</span>
+
+<h3 style="margin-top:15px">จัดการเว็บไซต์</h3>
+
+<label>ชื่อเว็บไซต์</label>
+<input id="siteName" value="Addo Booth">
+
+<label>สีหลัก</label>
+<input id="siteColor" value="#0788ff">
+
+<label>ประกาศหน้าเว็บ</label>
+<input id="announcement" value="ยินดีต้อนรับสู่ Addo Booth">
+
+<button class="primary" onclick="saveAdmin()">บันทึกการตั้งค่า</button>
+</div>
+
+<div class="panel" style="margin-top:20px">
+<h3>จัดการสินค้า</h3>
+<br>
+
+<label>ชื่อสินค้า</label>
+<input id="adminProduct" placeholder="เช่น Free Fire">
+
+<label>ราคา</label>
+<input id="adminPrice" type="number" placeholder="ราคา">
+
+<button class="primary" onclick="addProduct()">เพิ่มสินค้า</button>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+<strong>Addo Booth</strong><br>
+ร้านเติมเกมและบริการดิจิทัล
+</footer>
+
+
+<!-- LOGIN -->
+
+<div class="modal" id="loginModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('loginModal')">×</button>
+
+<h2>เข้าสู่ระบบ</h2>
+
+<input id="loginUser" placeholder="ชื่อผู้ใช้">
+<input id="loginPass" type="password" placeholder="รหัสผ่าน">
+
+<button class="primary" onclick="login()">เข้าสู่ระบบ</button>
+<button class="secondary" onclick="openRegister()">สมัครสมาชิก</button>
+
+</div>
+</div>
+
+
+<!-- REGISTER -->
+
+<div class="modal" id="registerModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('registerModal')">×</button>
+
+<h2>สมัครสมาชิก</h2>
+
+<input id="regUser" placeholder="ชื่อผู้ใช้">
+<input id="regPass" type="password" placeholder="รหัสผ่าน">
+
+<button class="primary" onclick="register()">สมัครสมาชิก</button>
+
+</div>
+</div>
+
+
+<!-- TOPUP -->
+
+<div class="modal" id="topupModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('topupModal')">×</button>
+
+<h2>💳 เติมเงิน</h2>
+
+<input id="topupAmount" type="number" placeholder="จำนวนเงิน">
+
+<select id="topupMethod">
+<option>QR พร้อมเพย์</option>
+<option>โอนธนาคาร</option>
+</select>
+
+<button class="primary" onclick="topup()">สร้างรายการเติมเงิน</button>
+
+</div>
+</div>
+
+
+<script>
+
+let currentUser=localStorage.getItem("addo_user");
+
+let balance=Number(localStorage.getItem("addo_balance")||0);
+
+function showPage(page){
+
+document.querySelectorAll("main section").forEach(x=>{
+x.classList.add("hidden");
+});
+
+document.getElementById(page).classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+function openLogin(){
+
+document.getElementById("loginModal").style.display="flex";
+
+}
+
+function openRegister(){
+
+closeModal("loginModal");
+
+document.getElementById("registerModal").style.display="flex";
+
+}
+
+function openTopup(){
+
+if(!currentUser){
+
+openLogin();
+
+return;
+
+}
+
+document.getElementById("topupModal").style.display="flex";
+
+}
+
+function closeModal(id){
+
+document.getElementById(id).style.display="none";
+
+}
+
+function register(){
+
+let u=document.getElementById("regUser").value.trim();
+
+let p=document.getElementById("regPass").value;
+
+if(!u||!p){
+
+alert("กรุณากรอกข้อมูลให้ครบ");
+
+return;
+
+}
+
+localStorage.setItem("addo_user",u);
+
+localStorage.setItem("addo_pass",p);
+
+currentUser=u;
+
+balance=0;
+
+localStorage.setItem("addo_balance",0);
+
+closeModal("registerModal");
+
+updateAccount();
+
+alert("สมัครสมาชิกสำเร็จ");
+
+showPage("account");
+
+}
+
+function login(){
+
+let u=document.getElementById("loginUser").value.trim();
+
+let p=document.getElementById("loginPass").value;
+
+let savedU=localStorage.getItem("addo_user");
+
+let savedP=localStorage.getItem("addo_pass");
+
+if(u===savedU&&p===savedP){
+
+currentUser=u;
+
+closeModal("loginModal");
+
+updateAccount();
+
+showPage("account");
+
+}else{
+
+alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+
+}
+
+}
+
+function updateAccount(){
+
+document.getElementById("usernameText").textContent=currentUser||"Guest";
+
+document.getElementById("balanceText").textContent=
+"฿"+balance.toFixed(2);
+
+}
+
+function logout(){
+
+currentUser=null;
+
+showPage("home");
+
+alert("ออกจากระบบแล้ว");
+
+}
+
+function topup(){
+
+let amount=Number(document.getElementById("topupAmount").value);
+
+if(!amount||amount<=0){
+
+alert("กรุณาระบุจำนวนเงิน");
+
+return;
+
+}
+
+alert("สร้างรายการเติมเงิน ฿"+amount+
+" แล้ว กรุณาชำระเงินตามช่องทางที่ร้านกำหนด");
+
+closeModal("topupModal");
+
+}
+
+function buyProduct(name,price){
+
+if(!currentUser){
+
+alert("กรุณาเข้าสู่ระบบก่อนซื้อสินค้า");
+
+openLogin();
+
+return;
+
+}
+
+if(balance<price){
+
+alert("ยอดเงินไม่เพียงพอ กรุณาเติมเงินก่อน");
+
+openTopup();
+
+return;
+
+}
+
+balance-=price;
+
+localStorage.setItem("addo_balance",balance);
+
+updateAccount();
+
+alert("สั่งซื้อ "+name+" สำเร็จ");
+
+}
+
+function showHistory(){
+
+document.getElementById("history").classList.remove("hidden");
+
+}
+
+function saveAdmin(){
+
+let name=document.getElementById("siteName").value;
+
+let color=document.getElementById("siteColor").value;
+
+document.querySelector(".logo").textContent="💠 "+name;
+
+document.documentElement.style.setProperty("--main",color);
+
+alert("บันทึกการตั้งค่าแล้ว");
+
+}
+
+function addProduct(){
+
+let name=document.getElementById("adminProduct").value;
+
+let price=document.getElementById("adminPrice").value;
+
+if(!name||!price){
+
+alert("กรุณากรอกข้อมูลสินค้า");
+
+return;
+
+}
+
+alert("เพิ่มสินค้า "+name+" ราคา ฿"+price);
+
+}
+
+updateAccount();
+
+</script>
+
+</body>
+  </html>
