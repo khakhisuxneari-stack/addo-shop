@@ -1,0 +1,14 @@
+{
+  "name": "addo-booth",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create addo-booth-db",
+    "db:init": "wrangler d1 execute addo-booth-db --remote --file=schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.44.0"
+  }
+}
